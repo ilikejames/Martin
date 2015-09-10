@@ -1,0 +1,45 @@
+{
+    "name": "martinAppCore",
+
+    "version": "0.0.1",
+
+    "author": "james mountain <james@depop.com>",
+
+    "description": "Cor business logic for MartinApp",
+
+    "engines" :{
+        "node" : "0.12.2",
+        "npm" : "2.6.0"
+    },
+
+    "devDependencies": {
+        "jasmine-stealth" : "x",
+        "jasmine-stealth-node" : "x",
+        "jasmine-node" : "1.14.5"
+    },
+
+    "dependencies": {
+        "lodash": "2.4.1",
+        "q": "0.9.7",
+        "martinAppData" : "../martinAppData"
+    },
+
+    "main" : "index.js",
+
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ilikejames/Martin"
+    },
+
+    "readme" : "readme",
+
+    "bugs": {
+        "url": "https://github.com/ilikejames/Martin/issues"
+    },
+
+    "scripts": {
+        "test" : "jasmine-node ./ --verbose"
+    }
+}
+
+

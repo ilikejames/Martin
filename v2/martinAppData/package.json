@@ -1,0 +1,44 @@
+{
+    "name": "martinData",
+
+    "version": "0.0.1",
+
+    "author": "james mountain <james@depop.com>",
+
+    "description": "Data Access Layer for MartinApp",
+
+    "engines" :{
+        "node" : "0.12.2",
+        "npm" : "2.6.0"
+    },
+
+    "devDependencies": {
+        "fakeredis" : "x",
+        "jasmine-stealth" : "x",
+        "jasmine-stealth-node" : "x",
+        "jasmine-node" : "1.14.5"
+    },
+
+    "dependencies": {
+        "lodash": "2.4.1",
+        "q": "0.9.7",
+        "then-redis" : "git://github.com/ilikejames/then-redis.git#ded5fd6c6a27493c8df15ea8984cf2ea55399999"
+    },
+
+    "main" : "index.js",
+
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ilikejames/Martin"
+    },
+
+    "bugs": {
+        "url": "https://github.com/ilikejames/Martin/issues"
+    },
+
+    "scripts": {
+        "test" : "jasmine-node ./ --verbose"
+    }
+}
+
+

@@ -1,0 +1,14 @@
+#MartinAppCore
+
+Core "business logic" for the MartinApp. 
+
+Requires redis is running, either with defaults or configured :
+
+export REDIS_HOST=localhost
+export REDIS_PORT=6379
+export REDIS_PASSWORD=
+
+##Tests
+
+npm test
+

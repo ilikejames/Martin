@@ -22,14 +22,11 @@ function saveText(name, text) {
 	return db.rpush(cleanName(name), text);
 }
 
-function getPage(name, index, size) {
-	// listing should always be backwards...
-	// LIFO style
-	var startIndex = Math.max(index-size, 10);
-	var endIndex = Math.min(index, index+size);
+function getPrevious(name, index, count) {
+	var startIndex = Math.max(index-count, 0);
+	var endIndex = index-1;
 	return db.lrange(cleanName(name), startIndex, endIndex);
 }
-
 
 
 module.exports = function(dbConnection) {
@@ -37,10 +34,11 @@ module.exports = function(dbConnection) {
 	db = dbConnection;
 
 	return {
+		getCleanName : cleanName,
 		getIndex : getIndex,
 		getText : getText,
 		saveText : saveText,
-		getPage : getPage
+		getPrevious : getPrevious
 	}
 
 }
