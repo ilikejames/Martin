@@ -1,7 +1,7 @@
 Martin
 ------
 
-Boilerplate outline for a node & angular prodject
+Boilerplate outline for a node & angular project
 
 ## Setup
 

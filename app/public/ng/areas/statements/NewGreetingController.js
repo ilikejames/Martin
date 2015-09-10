@@ -12,7 +12,7 @@
 			[]
 		];
 
-		$scope.language = 'da'
+		$scope.language = 'it'
 		$scope.items = messages;
 		$scope.soundUrl = speakFactory(messages[0], $scope.language);
 
@@ -23,7 +23,8 @@
 			var a = textService.getNumberOfSentances(1 + Math.floor(Math.random()*3), 10);
 			$scope.items[1].push(a);
 			$scope.soundUrl = speakFactory($scope.items[1].length + '. ' + a, $scope.language);
-			textFinished = soundFinished = false;
+			textFinished = false;
+			soundFinished = true;
 		}
 
 		$scope.$on('iljOneWordAtATimeList.complete', function() {

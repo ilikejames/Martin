@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+	<head>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	</head>
+	<body>
+
+		<button id="btnStart">Start</button>
+
+
+		<div id="place">
+      
+	    </div>
+	    
+	    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
+
+
+		<script>
+
+			if ('speechSynthesis' in window) {
+				$('#place').append('<div>speechSynthesis in window</div>');
+				$('#place').append('<div>number voices: ' + window.speechSynthesis.getVoices().length + '</div>');
+
+				var msg = new SpeechSynthesisUtterance();
+				
+
+				$(window).unload(function() {
+					speechSynthesis.cancel();
+				})
+
+				window.speechSynthesis.onvoiceschanged=function() {
+					onLoaded()
+					speechSynthesis.onvoiceschanged=undefined;
+				};
+				var voices = window.speechSynthesis.getVoices();
+
+				voices.length && onLoaded();
+
+				$('#btnStart').on('click', onLoaded);
+
+			}
+			else {
+				$('#place').append('Not speech');
+			}
+
+
+
+			function onLoaded() {
+
+			  $('#place').append('<div>loaded voices: ' + window.speechSynthesis.getVoices().length + '</div>');
+			 
+			  var voices = window.speechSynthesis.getVoices();
+			  var words='ayicukuka xivam o usoha o edavu oxexig epip wucozixe unecit exi ikaxis iqocadohu fu pakaqimut pe oqamo ipe jesigire bapal fuveyudafa adocoqiboc tuloragi'.split(' ');
+
+			  
+
+			  function getSentance() {
+			    var count = _.random(3,10);
+			    var selected = [];
+			    for(var i=0;i<count;i++) {
+			      var word = words[_.random(0,words.length-1)];
+			       word = word.replace(' ', '');
+			      selected.push(word)
+			    }
+			    selected.push(',Martin,');
+			    selected = _.shuffle(selected);
+			    try {
+			    selected[0]=selected[0].substr(0,1).toUpperCase() + selected[0].substr(1);
+			    }
+			    catch(e) {
+			      //swallow
+			    }
+			    return selected.join(' ') + '.';
+			  }
+
+			  var count = 465423;
+
+			  function speak() {
+			    count++;
+			    var index = Math.floor(Math.random() * voices.length); 
+			    console.log(index);
+			    msg.voice = voices[index]; 
+			    msg.lang = voices[index].lang; 
+			    msg.text = count + ', ' + getSentance();
+			    msg.rate= /iPad|iPhone|iPod/.test(navigator.userAgent) ? 0.2 : 0.8;
+			    console.log(index, msg.lang); 
+			    setTimeout(function() {
+			    	speechSynthesis.speak(msg);
+			    },750);
+			    
+			  }
+
+			  var hasBoundary = false,
+			      wordIndex = 0,
+			      $currentContainer = $('<div/>');
+
+		      $('#place').append($currentContainer);
+
+			  msg.onstart = function() {
+			    console.log('onStart');
+			    hasBoundary = false;
+			    wordIndex = 0;
+			    lastCharIndex=0;
+			  }
+
+
+			  lastCharIndex = 0;
+			  
+			  msg.onboundary = function(e) {
+
+			  	return;
+
+			  	console.log('onboundary', e);
+			    
+			    hasBoundary = true;
+
+			    if(lastCharIndex>e.charIndex) {
+			    	//lastCharIndex = endIndex;
+			    	return;
+			    }
+
+			    var endIndex = msg.text.indexOf(' ', lastCharIndex) || -1;
+			    var word = msg.text.substring(e.charIndex, endIndex);
+			    console.log('word', word, endIndex);
+
+			    $currentContainer.html(msg.text.substring(0, endIndex));
+			    lastCharIndex = endIndex+1;
+
+			    return;
+
+
+			    var word = e.utterance.text.substr(lastCharIndex, endIndex-lastCharIndex);
+			    
+			    lastCharIndex = endIndex;
+
+			    
+			    if(word=='Martin') {
+			      word ='<u>Martin</u>';
+			    }
+			    console.log('onBoundary', e.charIndex ,word);
+			    word && $currentContainer.html($currentContainer.html() + ' ' + word);
+			    wordIndex++;
+			  }
+
+			  msg.onend = function(e) {
+			    console.log('onEnd', hasBoundary);
+			    if(!hasBoundary) {
+			    $currentContainer.html(msg.text);
+			    }
+			    $currentContainer  = $('<div>1.</div>');
+			    $('#place').append($currentContainer );
+			    speak();
+			  }
+
+			  speak();
+			}
+
+		</script>
+	</body>
+</html>
