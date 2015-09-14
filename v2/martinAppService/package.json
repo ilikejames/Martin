@@ -3,7 +3,7 @@
 
     "version": "0.0.1",
 
-    "author": "james mountain <james@depop.com>",
+    "author": "james mountain <james.mountain@gmail.com>",
 
     "description": "Microservice to access MartinApp",
 
@@ -22,7 +22,8 @@
         "lodash": "2.4.1",
         "q": "0.9.7",
         "martinAppCore" : "../martinAppCore",
-        "seneca" : "0.6.5"
+        "seneca" : "0.6.5",
+        "express" : "4.13.3"
     },
 
     "main" : "index.js",

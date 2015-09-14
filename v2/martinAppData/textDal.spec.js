@@ -101,6 +101,75 @@ describe('textDal', function() {
 				expect(results[2]).toEqual('0.8');
 				done();
 			});
+	});
+
+
+	describe('getTextForName', function() {
+
+		beforeEach(function(done) {
+			db.flushdb()
+			.then(function() {
+				done()
+			});
+		});
+
+		it('Should get default text for first occurance of name', function(done) {
+
+			textDal.getTextForName('newname', 'defaultText')
+			.then(function(data) {
+
+				expect(data).toEqual({
+					index: 1,
+					text : 'defaultText'
+				});
+
+				done();
+			});
+
+		});
+
+		it('Should get existing text when another name has already accessed it', function(done) {
+
+			textDal.getTextForName('firstname', 'first name text')
+			.then(function() {
+
+				textDal.getTextForName('secondname', 'ignore this text')
+				.then(function(result) {
+
+
+					expect(result).toEqual({
+						index: 1,
+						text : 'first name text'
+					});
+
+					done();
+
+				});
+
+			});
+
+		});
+
+		it('Should get a new index the second time a user requests', function(done) {
+
+			textDal.getTextForName('firstname', 'first time text')
+			.then(function() {
+
+				textDal.getTextForName('firstname', 'second time text')
+				.then(function(result) {
+
+					expect(result).toEqual({
+						index: 2,
+						text : 'second time text'
+					});
+
+					done();
+
+				});
+
+			});
+
+		});
 
 	});
 	

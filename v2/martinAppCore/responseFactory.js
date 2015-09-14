@@ -3,6 +3,7 @@ var dal = require('martinAppData');
 var sentanceCreator = require('./sentanceCreator');
 
 
+
 function sentanceCase(word) {
 	var words = word.split(' '),
 		len = words.length,
@@ -24,26 +25,27 @@ function getInitial(name, uid) {
 	var d = Q.defer();
 
 	Q.spread([
-		dal.text.getIndex(name),
+		dal.text.getTextForName(name, sentanceCreator.create(0,23)),
 		dal.user.getLastSeen(name),
 		dal.user.getNewVisitorCount(name)
-	], function(index, lastSeen, count) {
+	], 
+	function onGetInitialSpreadComplete(textResults, lastSeen, count) {
 
-		var text = sentanceCreator.create(0,23);
+		console.log('onGetInitialSpreadComplete', arguments);
 
 		var data = {
-			index : index+1,
+			index : textResults.index,
 			lastSeen : lastSeen,
 			totalCount : count,
-			sentance : text, 
+			text : textResults.text, 
 			name : sentanceCase(name)
 		}
 
 		// fire & forget
-		dal.text.saveText(name, text);
 		dal.user.setLastSeen(name); 
 
 		d.resolve(data);
+
 
 	})
 	.fail(d.reject);
