@@ -5,7 +5,7 @@ var core = require('martinAppCore');
 
 
 
-function statement( options ) { 
+function Statement( options ) { 
 
 	this.add( 'role:api, cmd:statement', getStatement );
 
@@ -25,7 +25,7 @@ function statement( options ) {
 
 seneca
 
-.use( statement, {} )
+.use( Statement, {} )
 
 .act('role:web', {
 	use:{

@@ -6,6 +6,7 @@ var VOWELS = "aeiou";
 var CONSONENTS = "qwrtypsdfghjklzxcvbnm";
 
 
+
 function getMadeUpWord() {
 
 	// really silly method to generate a word. Alternates between vowels and consonents
@@ -26,6 +27,7 @@ function getMadeUpWord() {
 
 function getSentance(minSize, maxSize) {
 
+	// defaults
 	minSize = minSize === undefined ? 1 : minSize;
 	maxSize = maxSize === undefined ? 10 : maxSize;
 
@@ -37,12 +39,28 @@ function getSentance(minSize, maxSize) {
 
 	words = _.shuffle(words);
 
-	//capitalize first letter
-	words[0] = words[0].substr(0,1).toUpperCase() + words[0].substr(1);	 
+	//capitalize first letter of first word
+	words[0] = capitalize(words[0]); 
 
 	return  words.join(' ') + '.';
 }
 
 
-module.exports.create = getSentance;
+function capitalize(word) {
+	var words = word.split(' '),
+		len = words.length,
+		s = [];
 
+	for(var i=0, itm; itm = words[i]; i++) {
+		s.push(itm.substr(0,1).toUpperCase() + itm.substr(1).toLowerCase());
+	}
+	return s.join(' ');
+}
+
+
+
+
+module.exports = {
+	create : getSentance,
+	capitalize : capitalize
+}
