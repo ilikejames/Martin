@@ -41,7 +41,14 @@ module.exports= function() {
 
 		getUid(req)
 		.then(function(uuid) {
-			res.json({uuid : uuid});
+			console.log('uuid', uuid);
+
+			res.render('home', {
+				layout : false,
+				title : 'my title',
+				uuid: uuid
+			});
+			//res.json({uuid : uuid});
 		})
 		.catch(function() {
 

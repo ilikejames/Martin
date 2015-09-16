@@ -1,0 +1,15 @@
+{
+	"name": "martinWebApp",
+	"version": "1.0.0",
+	"dependencies": {
+		"requirejs": "2.1",
+		"fastclick" : "1.x",
+		"angular" : "1.4.5",
+		"angular-route" : "1.4.5",
+		"modernizr": "~2.7.0", 
+		"lodash" : "3.10.0"
+	},
+	"devDependencies": {
+		"angular-mocks" : "1.4.2"
+	}
+}
