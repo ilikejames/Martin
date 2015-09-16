@@ -1,0 +1,80 @@
+
+@import "variables";
+
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+html {
+	font-size:18px; // all sizes in em
+	height:100%;
+}
+
+
+body { 
+	background:$color-background-border;
+	font-size: 1.2rem;
+	height:100%;
+	font-family: Courier;
+	color:$color-text-body;
+}
+
+ol {
+	list-style-type : decimal;
+	margin-left:4rem;
+
+	li {
+		margin:1rem 0;
+	}
+}
+
+
+#page {
+	max-width: 1000px;
+	margin:0 auto;
+	background: $color-background;
+	min-height: 100%;
+
+	&:after {
+		
+	}
+
+	#header {
+		background: $color-fill-light;
+		width:100%;
+		visibility: hidden;
+	}
+
+	#main-wrapper {
+		height:100%;
+
+		&:after {
+			content: "";
+			display: block;
+			clear:both;
+		}
+	}
+
+	#main {
+		height:100%;
+		padding:0 1rem;
+	}
+
+	#footer {
+		background:green;
+	}
+
+
+}
+
+h1, .h1 { 
+	font-size:3rem;
+	font-weight: bold;
+}
+h2, .h2 {
+	font-size:2rem;
+}
+h3, .h3 {
+	font-size:1.6rem;
+}
