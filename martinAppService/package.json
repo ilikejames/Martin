@@ -23,7 +23,8 @@
         "q": "0.9.7",
         "martinAppCore" : "../martinAppCore",
         "seneca" : "0.6.5",
-        "express" : "4.13.3"
+        "express" : "4.13.3",
+        "node-uuid" : "1.4.3"
     },
 
     "main" : "index.js",

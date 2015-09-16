@@ -16,7 +16,17 @@ describe('sentanceCreator', function() {
 			expect(sentanceCreator.capitalize('_GERHARD')).toEqual('_gerhard');
 		});
 
+		it('Should properly sentance case with europoean letters', function() {
+			//danish
+			expect(sentanceCreator.capitalize('øh')).toEqual('Øh');
+			//polish
+			expect(sentanceCreator.capitalize('łódź')).toEqual('Łódź');
+			//rusian
+			expect(sentanceCreator.capitalize('з')).toEqual('З');
+		});
+
 	});
+
 
 	describe('create', function() {
 
@@ -44,7 +54,7 @@ describe('sentanceCreator', function() {
 
 		it('Should be able to get a sentance with maximum 10 words plus the name', function() {
 			var sentance = sentanceCreator.create(10,10);
-			expect(sentance.split(' ').length).toEqual(11); // name
+			expect(sentance.split(' ').length).toEqual(11); // 10 + name
 		});
 
 		it('Should get a sentance containing only the name placeholder', function() {
@@ -52,7 +62,7 @@ describe('sentanceCreator', function() {
 			expect(sentance).toEqual('%s.');
 		});
 
-	})
+	});
 
 
 });

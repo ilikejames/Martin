@@ -2,6 +2,7 @@
 
 var seneca = require('seneca')()
 var core = require('martinAppCore');
+var uuid = require('node-uuid');
 
 
 
@@ -9,11 +10,10 @@ function Statement( options ) {
 
 	this.add( 'role:api, cmd:statement', getStatement );
 
-	//this.add( 'role:api, cmd:init', init )
-
 	function getStatement(msg, respond) {
-		// TODO: error handling
-		core.getInitial(msg.name)
+
+		core.getTextItem(msg.name)
+
 		.then(function(data) {
 			respond( null, data);
 		});
@@ -21,12 +21,26 @@ function Statement( options ) {
 	}
 }
 
+function Uid(options) {
+
+	this.add('role:api, cmd:uid', getUid);
+
+	function getUid(msg, response) {
+		response(null, { uid : uuid.v4() });
+	}
+
+}
 
 
 seneca
 
 .use( Statement, {} )
+.use( Uid, {} )
 
+.listen();
+
+return;
+/*
 .act('role:web', {
 	use:{
 
@@ -48,6 +62,7 @@ var app = express()
 app.use( seneca.export('web') )
 
 app.listen(3000)
+*/
 
 
 
