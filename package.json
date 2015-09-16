@@ -1,0 +1,40 @@
+{
+	"name": "martinApp",
+
+	"version": "0.0.1",
+
+	"author": "james mountain <james.mountain@gmail.com>",
+
+	"description": "MartinApp",
+
+	"engines" :{
+		"node" : "0.12.2",
+		"npm" : "2.6.0"
+	},
+
+	"devDependencies": {
+		
+	},
+
+	"dependencies": {
+	},
+
+
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ilikejames/Martin"
+	},
+
+	"readme" : "README.md",
+
+	"bugs": {
+		"url": "https://github.com/ilikejames/Martin/issues"
+	},
+
+	"scripts": {
+		"start" : "source .env_local | node martinAppService/index.js & node martinAppWeb/server/server.js",
+		"test" : "jasmine-node ./ --verbose  --forceexit"
+	}
+}
+
+

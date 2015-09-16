@@ -11,7 +11,7 @@ var concat = require('gulp-concat'),
  
 
 gulp.task('test', function() {
-	return runsequence('testserver', 'testclient');
+	return runsequence(['testserver', 'testclient']);
 });
 
 gulp.task('testclient', function (done) {
@@ -39,8 +39,10 @@ gulp.task('clean', function() {
 gulp.task('ngtemplates', function () {
 
 	var templateCache = require('gulp-angular-templatecache');
+	var minifier = require('gulp-minify-html');
 
 	return gulp.src('public/app/**/*.htm')
+	.pipe(minifier())
 	.pipe(templateCache({ 
 		module : 'app'
 	}))
@@ -103,6 +105,7 @@ gulp.task('sass', function () {
 	.pipe(minifyCss())
 	.pipe(rename('style.min.css'))
 	.pipe(gulp.dest('./public/build'));
+
 });
 
 
