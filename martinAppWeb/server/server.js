@@ -24,6 +24,8 @@ app.set('view engine', 'handlebars');
 app.set('views', __dirname + '/views');
 
 	
+app.use(express.static(__dirname + '/../public'));
+
 
 //app.use(express.logger());
 //app.use(express.compress());

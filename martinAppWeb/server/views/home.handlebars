@@ -1,15 +1,16 @@
 <!doctype html>
 <html>
 	<head>
-
 		<title>{{ title }} - Martin App</title>
 		<!-- TODO social -->
-		<!-- TODO style -->
+		<link rel="stylesheet" type="text/css" href="build/style.css" media="screen" />
+		<base href="/">
 
 	</head>
-	<body>
+	<body ng-app='app'>
 
 		<div id="page">
+
 
 			<h1>page</h1>
 
@@ -19,12 +20,14 @@
 
 			</pre>
 
+			<ng-view></ng-view>
+
 		</div>
 
 		<!-- TODO script -->
 
 		<script defer src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-
+		<script defer src="build/app.js"></script>
 
 	</body>
 </html>

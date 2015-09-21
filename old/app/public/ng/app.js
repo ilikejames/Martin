@@ -1,5 +1,10 @@
-(function(angular, undefined) {
+
+(function(angular) {
+
 	'use strict';
-	var module = angular.module('ilj', ['ilj.areas.statements']);
+
+	angular.module('app', []);
+
 })(angular);
+
 

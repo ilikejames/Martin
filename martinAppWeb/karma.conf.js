@@ -17,10 +17,8 @@ module.exports = function(config) {
     files: [
 		'public/assets/vendor/angular/angular.js',
 		'public/assets/vendor/angular-mocks/angular-mocks.js',
-		'public/assets/vendor/lodash/lodash.min.js',
-		'public/app/**/*.js',
-		'public/app/**/*.test.js' //,
-		//'public/app/**/*.htm'
+        'public/build/app.js',
+		'public/app/**/*.test.js'
 	],
 
 

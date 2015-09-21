@@ -1,27 +1,30 @@
 'use strict';
 
-
 var gulp = require('gulp');
 
 var concat = require('gulp-concat'),
 	uglify = require('gulp-uglify'),
 	sourcemaps = require('gulp-sourcemaps'),
 	rename = require('gulp-rename'),
-	runsequence = require('gulp-run-sequence');
+	runsequence = require('gulp-run-sequence'),
+	gutil = require('gulp-util');
  
+
 
 gulp.task('test', function() {
 	return runsequence(['testserver', 'testclient']);
 });
+
 
 gulp.task('testclient', function (done) {
 	var Server = require('karma').Server;
 
 	new Server({
 		configFile: __dirname + '/karma.conf.js',
-		singleRun: true
+		singleRun: false
 	}, done).start();
 });
+
 
 gulp.task('testserver', function (done) {
 	var jasmine = require('gulp-jasmine');
@@ -50,32 +53,35 @@ gulp.task('ngtemplates', function () {
 });
 
 
-var vendorScripts = [
-	'./public/assets/vendor/angular-route/angular-route.min.js',
-	'./public/assets/vendor/fastclick/lib/fastclick.min.js',
-	'./public/assets/vendor/lodash/lodash.min.js'
-];
+gulp.task('js', function() {
 
+	var browserify = require('browserify');
+	var source = require('vinyl-source-stream');
+	var buffer = require('vinyl-buffer');
 
-gulp.task('buildjs', function() {
+	var b = browserify({
+		entries: [
+			'./public/app/app.module.js',
+			'./public/build/templates.js'
+		],
+		debug: true
+	});
 
-	return gulp.src(vendorScripts.concat([
-		'./public/app/**/*.js',
-		'!./public/app/**/*.test.js',
-		'./public/build/templates.js'
-	]))
-	.pipe(sourcemaps.init())
-	.pipe(sourcemaps.write())
-    .pipe(concat('build.js'))
-    .pipe(gulp.dest('./public/build'))
-    .pipe(uglify({
-        compress: {
-            negate_iife: false
-        }
-    }))
-	.pipe(rename('build.min.js'))
-	.pipe(gulp.dest('./public/build'));
+	return b.bundle()
+    .pipe(source('app.js'))
+    .pipe(buffer())
+    .pipe(sourcemaps.init({loadMaps: true}))
+        // Add transformation tasks to the pipeline here.
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./public/build/'));
+    
+    // .pipe(uglify())
+    // .on('error', gutil.log)
+    // .pipe(rename('app.min.js'))
+    // .pipe(gulp.dest('./public/build/'));
+
 });
+
 
 
 gulp.task('jshint', function() {
@@ -113,7 +119,7 @@ gulp.task('sass', function () {
 gulp.task('watch', function() {
 	gulp.watch('./public/assets/sass/**/*.scss', ['sass']);
 	gulp.watch('./public/app/**/*.htm', ['ngtemplates']);
-	gulp.watch('./public/app/**/*.js', ['jshint', 'buildjs']);
+	gulp.watch('./public/app/**/*.js', ['jshint', 'js']);
 });
 
 
@@ -122,13 +128,14 @@ gulp.task('gzip', function() {
 	var gzip = require('gulp-gzip');
 
 	gulp.src([
-		'./public/build/build.min.js',
+		'./public/build/app.js',
 		'./public/build/style.min.css',
 	])
 	.pipe(gzip())
     .pipe(gulp.dest('./public/build'));
 
 });
+
 
 gulp.task('build', function() {
 	runsequence('test', 'clean', ['sass', 'ngtemplates'], 'buildjs', 'gzip');
