@@ -1,16 +1,13 @@
 
-var angularRoute = require('../assets/vendor/angular-route/angular-route.js');
-
-var commonServices = require('./common/services/index.js');
-
-
 'use strict';
 
-var module = angular.module('app', ['ngRoute', 'app.common.services']);
+// TODO: move to ui.router
+
+var router = require('../assets/vendor/angular-route/angular-route.js'),
+	commonServices = require('./common/services/index.js');
 
 
-
-module
+angular.module('app', ['ngRoute', 'app.common.services'])
 
 .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 

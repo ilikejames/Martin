@@ -118,7 +118,7 @@ gulp.task('sass', function () {
 
 gulp.task('watch', function() {
 	gulp.watch('./public/assets/sass/**/*.scss', ['sass']);
-	gulp.watch('./public/app/**/*.htm', ['ngtemplates']);
+	gulp.watch('./public/app/**/*.htm', ['ngtemplates', 'js']);
 	gulp.watch('./public/app/**/*.js', ['jshint', 'js']);
 });
 

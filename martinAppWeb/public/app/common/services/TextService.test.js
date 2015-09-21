@@ -16,8 +16,6 @@
 			textService = _TextService_;
 			$httpBackend = $injector.get('$httpBackend');
 
-			debugger;
-
 			getTextRequest = $httpBackend.when('GET', '/api/statement/james')
                             .respond({ obj : 1 });
 
@@ -29,7 +27,6 @@
 			$httpBackend.verifyNoOutstandingRequest();
 			done();
 		});
-
 
 
 		it('Should make a call to the api', function(done) {
