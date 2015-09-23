@@ -16,18 +16,23 @@ var handlebars = hbs.create({
     }
 });
  
-
+ 
 
 app.engine('handlebars', handlebars.engine);
 
 app.set('view engine', 'handlebars');
 app.set('views', __dirname + '/views');
 
-	
+
+
+app.use(require('express-favicon')(__dirname + '/../public/assets/images/favicon.ico'));
 app.use(express.static(__dirname + '/../public'));
 
 
-//app.use(express.logger());
+app.use(require('express-logger')({path: __dirname + '/../logs/log.txt'}));
+
+
+// TODO: load packages
 //app.use(express.compress());
 //app.use(express.urlencoded());
 //app.use(express.cookieParser(process.env.COOKIE_SECRET)); //  || 'this-is-a-not-so-secret-string'
