@@ -42,10 +42,10 @@ gulp.task('clean', function() {
 gulp.task('ngtemplates', function () {
 
 	var templateCache = require('gulp-angular-templatecache');
-	var minifier = require('gulp-minify-html');
+	//var minifier = require('gulp-minify-html');
 
 	return gulp.src('public/app/**/*.htm')
-	.pipe(minifier())
+	//.pipe(minifier())
 	.pipe(templateCache({ 
 		module : 'app'
 	}))
@@ -114,12 +114,17 @@ gulp.task('sass', function () {
 
 });
 
+function swallowError(err) {
+	console.log(err.toString());
+	 this.emit('end');
+}
+
 
 
 gulp.task('watch', function() {
-	gulp.watch('./public/assets/sass/**/*.scss', ['sass']);
-	gulp.watch('./public/app/**/*.htm', ['ngtemplates', 'js']);
-	gulp.watch('./public/app/**/*.js', ['jshint', 'js']);
+	gulp.watch('./public/assets/sass/**/*.scss', ['sass']).on('error', swallowError);
+	gulp.watch('./public/app/**/*.htm', ['ngtemplates', 'js']).on('error', swallowError);
+	gulp.watch('./public/app/**/*.js', ['jshint', 'js']).on('error', swallowError);
 });
 
 

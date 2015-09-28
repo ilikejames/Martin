@@ -7,7 +7,8 @@
 		"angular" : "1.4.5",
 		"angular-route" : "1.4.5",
 		"modernizr": "~2.7.0", 
-		"lodash" : "3.10.0"
+		"lodash" : "3.10.0",
+		"eventEmitter" : "x"
 	},
 	"devDependencies": {
 		"angular-mocks" : "1.4.5"

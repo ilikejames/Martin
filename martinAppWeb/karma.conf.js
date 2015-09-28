@@ -12,6 +12,7 @@ module.exports = function(config) {
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
 
+    plugings : [require("karma-webpack")],
 
     // list of files / patterns to load in the browser
     files: [
@@ -30,6 +31,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+        'public/app/**/*.nonng.test.js': ['webpack','sourcemap'],
         'public/app/**/*.html': ['ng-html2js']
     },
 
@@ -50,7 +52,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['dots'],
+    reporters: ['progress'],
 
     // web server port
     port: 9876,
