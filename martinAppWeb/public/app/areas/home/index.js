@@ -18,7 +18,7 @@
 		.when('/page2', {
 			controller : 'Page2Controller',
 			templateUrl : 'areas/home/page2.htm'
-		})
+		});
 
 	}])
 	

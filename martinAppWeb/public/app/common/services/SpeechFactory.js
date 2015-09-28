@@ -1,4 +1,4 @@
-(function(window, undefined) {
+(function(window, angular, undefined) {
 	
 	'use strict';
 
@@ -32,7 +32,7 @@
 				var utterance = new SpeechSynthesisUtterance(),
 					speech = new Speech(utterance, text);
 
-				utterance.voice = voice || voices[0];
+				utterance.voice = voice || voices[32];
 				//utterance.lang = utterance.voice.lang; 
 				utterance.text = text;
 				utterance.rate= /iPad|iPhone|iPod/.test(navigator.userAgent) ? 0.2 : 0.8;
@@ -56,13 +56,13 @@
 
 			if(voices && voices.length) {
 				attempts = 0;
-				return $timeout(angular.bind(this, callback, null, voices), 1);
+				return $timeout(angular.bind({}, callback, null, voices), 1);
 			}
 
 			if(attempts<3) {
 				attempts++;
 				//console.log('reattempting:', attempts);
-				$timeout(angular.bind(this, getVoicesWhenReady, callback) ,100);
+				$timeout(angular.bind({}, getVoicesWhenReady, callback) ,100);
 			}
 			else {
 				return callback('timeout');
@@ -85,14 +85,14 @@
 
 
 			return d.promise;
-		};
+		}
 
 		return {
 			getVoices : getVoices,
 			speak : speak
-		}
+		};
 
 
 	};
 
-})(window);
+})(window, angular);

@@ -2,11 +2,11 @@
 
 	'use strict';
 
-	var oneWordAtATime = require('./SpeakTextOneWordAtATime.js');
+	var highlightPhrases = require('./HighlightPhrases.js');
 	
 	angular.module('app.common.directives', [])
 
-	.directive('oneWordAtATime', ['$interval', oneWordAtATime]);
+	.directive('highlightPhrases', ['$interval', '$sce', highlightPhrases]);
 
 
 })();

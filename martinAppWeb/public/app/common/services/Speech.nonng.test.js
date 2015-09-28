@@ -9,7 +9,7 @@
 		beforeEach(function() {
 
 			mock = {
-				onstart : function() {debugger;},
+				onstart : function() {},
 				onend : function() {},
 				onboundary : function() {}
 			};

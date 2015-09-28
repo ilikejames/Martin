@@ -1,22 +1,26 @@
 
-'use strict';
+(function(angular) {
 
-// TODO: move to ui.router
-var router = require('../assets/vendor/angular-route/angular-route.js');
+	'use strict';
 
-// common
-var commonServices = require('./common/services/index.js'),
-	commonDirectives = require('./common/directives/index.js');
+	// TODO: move to ui.router
+	var router = require('../assets/vendor/angular-route/angular-route.js');
 
-// areas
-var areaHome = require('./areas/home/index.js');
+	// common
+	var commonServices = require('./common/services/index.js'),
+		commonDirectives = require('./common/directives/index.js');
+
+	// areas
+	var areaHome = require('./areas/home/index.js');
 
 
-angular.module('app', ['ngRoute', 'app.common.directives', 'app.areas.home'])
+	angular.module('app', ['ngRoute', 'app.common.directives', 'app.areas.home'])
 
-.config(['$locationProvider', function($locationProvider) {
-	$locationProvider.html5Mode(true);
-}]);
+	.config(['$locationProvider', function($locationProvider) {
+		$locationProvider.html5Mode(true);
+	}]);
 
+
+}(angular));
 
 
