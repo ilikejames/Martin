@@ -2,7 +2,9 @@
 
 	'use strict';
 
-	module.exports = function HighlightPhrases($interval, $sce) {
+
+
+	module.exports = function HighlightPhrases($interval, $sce, $anchorScroll, $timeout) {
 
 		return {
 
@@ -17,18 +19,24 @@
 				spoken : '@'
 			},
 
+
 			link : function($scope, $element, $attributes) {
+
+				// scroll to position
+				$timeout(angular.bind({}, $anchorScroll, 'speak_' + $scope.number),100);
+
 
 				$scope.getHighlightedText = function() {
 
 					var spoken  = $scope.spoken || '',
-						n = spoken.toLowerCase().lastIndexOf($scope.word.toLowerCase()),
-						spokenWithWord =  spoken.slice(0, n) + spoken.slice(n).replace($scope.word, '<span class="word">' + $scope.word + '</span>');
+						word = $scope.word || '';
 
-					var s = $scope.text.replace(spoken, '<span class="spoken">' + spokenWithWord + '</span>')
+					var wordIndex = spoken.toLowerCase().lastIndexOf(word.toLowerCase());
+					var spokenWithWord =  spoken.slice(0, wordIndex) + spoken.slice(wordIndex).replace(word, '<span class="word">' + word + '</span>');
+					var s = $scope.text.replace(spoken, '<span class="spoken">' + spokenWithWord + '</span>');
 
 					return $sce.trustAsHtml(s);
-				}
+				};
 
 				
 			}

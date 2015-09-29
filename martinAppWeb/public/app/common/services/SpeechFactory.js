@@ -17,6 +17,14 @@
 
 	var attempts = 0;
 
+	function getRandomDefaultVoice(voices) {
+		var voice = voices[Math.floor(Math.random() * voices.length)];
+		if(voice.localService) {
+			return voice;
+		}
+		return getRandomDefaultVoice(voices);
+	}
+
 
 	module.exports = function SpeechFactory($window, $q, $timeout) {
 
@@ -32,7 +40,7 @@
 				var utterance = new SpeechSynthesisUtterance(),
 					speech = new Speech(utterance, text);
 
-				utterance.voice = voice || voices[32];
+				utterance.voice = voice || getRandomDefaultVoice(voices);
 				//utterance.lang = utterance.voice.lang; 
 				utterance.text = text;
 				utterance.rate= /iPad|iPhone|iPod/.test(navigator.userAgent) ? 0.2 : 0.8;

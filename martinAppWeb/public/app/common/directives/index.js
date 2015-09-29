@@ -6,7 +6,7 @@
 	
 	angular.module('app.common.directives', [])
 
-	.directive('highlightPhrases', ['$interval', '$sce', highlightPhrases]);
+	.directive('highlightPhrases', ['$interval', '$sce', '$anchorScroll', '$timeout', highlightPhrases]);
 
 
 })();
