@@ -2,6 +2,7 @@
 	
 	'use strict';
 
+	var _ = require('../../../assets/vendor/lodash/lodash.js');
 	var Speech = require('./Speech.js');
 
 
@@ -95,8 +96,20 @@
 			return d.promise;
 		}
 
+		function getLanguages() {
+			return this.getVoices()
+				.then(function(voices) {
+					var langs = _.reduce(voices, function(memo, itm) {
+						itm.localService && memo.push(itm.lang);
+						return memo;
+					}, []);	
+					return _.uniq(langs);
+				});
+		}
+
 		return {
 			getVoices : getVoices,
+			getLanguages : getLanguages,
 			speak : speak
 		};
 

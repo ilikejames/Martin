@@ -1,7 +1,7 @@
 (function() {
 
-	var homeController = require('./HomeController.js');
-	var page2Controller = require('./Page2Controller.js');
+	var speakController = require('./SpeakController.js');
+	var nameController = require('./NameController.js');
 
 	
 	angular.module('app.areas.home', ['app.common.services'])
@@ -11,19 +11,20 @@
 
 		$routeProvider
 
-		.when('/', {
-			controller : 'HomeController',
-			templateUrl  : 'areas/home/home.htm'
+		.when('/:name', {
+			controller : 'SpeakController',
+			templateUrl  : 'areas/home/speak.htm'
 		})
-		.when('/page2', {
-			controller : 'Page2Controller',
-			templateUrl : 'areas/home/page2.htm'
+		.when('/', {
+			controller : 'NameController',
+			templateUrl : 'areas/home/name.htm'
 		});
 
 	}])
 	
-	.controller('HomeController', ['$scope', 'TextService', 'SpeechFactory', homeController])
-	.controller('Page2Controller', ['$scope', 'TextService', 'SpeechFactory', page2Controller]);
+	.controller('SpeakController', ['$scope', 'TextService', 'SpeechFactory', 'UserService', speakController])
+
+	.controller('NameController', ['$scope', 'SpeechFactory', 'UserService', nameController]);
 
 
 })();

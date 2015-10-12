@@ -1,0 +1,32 @@
+//@import "compass";
+
+#form-name {
+	
+	max-width: 600px;
+    margin: 0 auto;
+    background-color: black;
+    padding: 1rem 0.5rem;
+    color: #FFF;
+    transform: rotate(-2deg);
+    border-radius: 2rem;
+
+    h2 span {
+	    display: block;
+	    font-size: 4rem;
+	    text-transform: uppercase;
+    }
+
+    input {
+	   	width: 90%;
+	    box-sizing: border-box;
+	    height: 8rem;
+	    font-size: 3rem;
+	    line-height: 5rem;
+	    text-align: center;
+	    font-family: Chalkboard;
+    }
+
+    button {
+    	display: none;
+    }
+}

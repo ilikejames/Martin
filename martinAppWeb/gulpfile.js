@@ -123,7 +123,7 @@ function swallowError(err) {
 
 gulp.task('watch', function() {
 	gulp.watch('./public/assets/sass/**/*.scss', ['sass']).on('error', swallowError);
-	gulp.watch('./public/app/**/*.htm', ['ngtemplates', 'js']).on('error', swallowError);
+	gulp.watch('./public/app/**/*.htm', ['ngtemplates', ['js']]).on('error', swallowError);
 	gulp.watch('./public/app/**/*.js', ['jshint', 'js']).on('error', swallowError);
 });
 

@@ -33,7 +33,7 @@
 
 	"scripts": {
 		"install" : "sh install.sh",
-		"start" : "source .env_local | node martinAppService/index.js & node martinAppWeb/server/server.js",
+		"start" : "source .env_local | node martinAppService/index.js & node --debug martinAppWeb/server/server.js",
 		"test" : "jasmine-node ./ --verbose  --forceexit"
 	}
 }

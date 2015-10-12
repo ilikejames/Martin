@@ -22,7 +22,8 @@
     "dependencies": {
         "lodash": "2.4.1",
         "q": "0.9.7",
-        "martinAppData" : "../martinAppData"
+        "martinAppData" : "../martinAppData",
+        "node-uuid" : "1.4.3"
     },
 
     "main" : "index.js",

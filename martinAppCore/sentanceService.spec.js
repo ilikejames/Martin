@@ -1,6 +1,6 @@
 
 
-var responseFactory = require('./responseFactory');
+var responseFactory = require('./sentanceService');
 var sentanceCreator = require('./sentanceCreator');
 
 

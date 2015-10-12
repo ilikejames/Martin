@@ -4,9 +4,10 @@ var db = require('./db.spec');
 var userDal = require('./userDal')(db);
 
 
+
 // tests for textDal.js
 
-describe('textDal', function() {
+describe('userDal', function() {
 	
 	var collectionName;
 
@@ -66,6 +67,17 @@ describe('textDal', function() {
 				done();
 			});
 
+		});
+	});
+
+	it('Should get an existing user by uid', function(done) {
+		userDal.setUidName('12345', 'xxxx')
+		.then(function(result) {
+			userDal.getByUid('12345')
+			.then(function(result) {
+				expect(result).toEqual('xxxx');
+				done();
+			})
 		});
 	});
 

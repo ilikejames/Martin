@@ -8,7 +8,7 @@
 	"description": "MartinApp website",
 
 	"engines" :{
-		"node" : "0.12.2",
+		"node" : "0.12.x",
 		"npm" : "2.6.0"
 	},
 
@@ -50,9 +50,11 @@
 		"q": "0.9.7",
 		"seneca" : "0.6.5",
 		"express" : "4.13.3",
-		"express-handlebars" : "2.0.1",
 		"express-favicon" : "1.0.1",
-		"express-logger" : "0.0.3"
+		"express-logger" : "0.0.3",
+		"cookie-parser" : "1.4.0",
+		"body-parser" : "1.14.1",
+		"ejs" : "2.3.4"
 	},
 
 	"main" : "server/server.js",

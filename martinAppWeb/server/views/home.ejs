@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>{{ title }} - Martin App</title>
+		<title><%= title %> - Martin App</title>
 		<!-- TODO social -->
 		<link rel="stylesheet" type="text/css" href="build/style.css" media="screen" />
 		<base href="/">
@@ -15,9 +15,16 @@
 
 		</div>
 
+		<script>
+			window.martin = window.martin || {};
+			window.martin.user = <%- JSON.stringify(user) %>;
+		</script>
 
 		<script defer src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 		<script defer src="build/app.js"></script>
+		<script>
+
+
 
 	</body>
 </html>

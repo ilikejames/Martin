@@ -1,0 +1,16 @@
+
+<div id="form-name-container">
+	<form novalidate name="userForm" ng-controller="NameController">
+		<div id="form-name">
+			<h2><span>Hello,</span>my name is</h2>
+			<input type="text" autofocus ng-model="user.name" ng-minlength="3" ng-maxLength="20" required/><br />
+		</div>
+
+		<button ng-disabled="userForm.$invalid"  ng-click="update(user)">Start</button>
+	</form>
+</div>
+
+
+
+
+
