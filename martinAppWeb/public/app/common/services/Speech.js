@@ -2,8 +2,8 @@
 	
 	'use strict';
 
-	var EventEmitter = require('../../../assets/vendor/eventEmitter/eventEmitter.js'),
-		_ = require('../../../assets/vendor/lodash/lodash.js');
+	var EventEmitter = require('vendor/eventEmitter/eventEmitter.js'),
+		_ = require('vendor/lodash/lodash.js');
 		
 
 

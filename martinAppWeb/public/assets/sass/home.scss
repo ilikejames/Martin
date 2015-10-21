@@ -33,9 +33,63 @@
 	.word {
 		color:black;
 		display: inline-block;
-		-webkit-transform:scaleY(1.8);
-		transform:scaleY(1.8);
+		//-webkit-transform:scaleY(1.8);
+		//transform:scaleY(1.8);
+		color:red;
 	}
 
+
+}
+
+#page {
+	.textblock {
+		//display: inline;
+
+		.highlightable-text  {
+			//display: inline;
+		}
+	}
+}
+
+
+#page {
+
+	text-align: left;
+
+	.textblock {
+
+		transition:font-size 0.3s;
+
+		font-size:2rem;
+		line-height: 3rem;
+
+		/*
+		&:nth-last-child(4) {
+			font-size:1rem;
+			line-height: 1.5rem;
+		}
+
+		&:nth-last-child(3) {
+			font-size:1.5rem;
+			line-height: 2rem;
+		}
+
+		&:nth-last-child(2) {
+			font-size:2rem;
+			line-height: 3rem;
+		}
+		&:nth-last-child(1) {
+			font-size:3rem;
+			line-height: 4rem;
+		}
+		*/
+		//&.new {
+		//	font-size: 2rem;
+		//	line-height: 3rem;
+		//}
+		
+
+	}
+	
 }
 

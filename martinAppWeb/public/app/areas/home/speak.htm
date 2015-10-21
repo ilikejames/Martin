@@ -1,8 +1,14 @@
 
 <br/>
 
-<div ng-repeat="text in texts">
-	<highlight-phrases text="{{text.text}}" number="{{ text.index }}" word="{{text.word}}" spoken="{{text.spoken}}"></highlight-phrases>
+<div ng-repeat="text in texts" class="textblock new">
+	<highlight-phrases 
+		text="{{text.text}}" 
+		class="highlightPhrase" 
+		number="{{ text.index }}" 
+		word="{{text.word}}" 
+		spoken="{{text.spoken}}">
+	</highlight-phrases>
 </div>
 
 

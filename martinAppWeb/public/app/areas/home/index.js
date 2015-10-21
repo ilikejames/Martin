@@ -24,7 +24,7 @@
 	
 	.controller('SpeakController', ['$scope', 'TextService', 'SpeechFactory', 'UserService', speakController])
 
-	.controller('NameController', ['$scope', 'SpeechFactory', 'UserService', nameController]);
+	.controller('NameController', ['$scope', 'SpeechFactory', 'UserService', '$location', nameController]);
 
 
 })();

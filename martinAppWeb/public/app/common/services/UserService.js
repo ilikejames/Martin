@@ -4,25 +4,25 @@
 
 	module.exports = function UserService($http) {
 
-		var user = window.martin.user.name ? window.martin.user : undefined;
+		var _user = window.martin.user.name ? window.martin.user : undefined;
 
 		this.get = function() {
-			return user;
+			return _user;
 		};
 
 		this.create = function(user) {
 			return $http.post('/api/user', user)
 			.then(function(result) {
-				user = result.data;
-				return user;
+				_user = result.data;
+				return _user;
 			});
 		};
 		
 		this.save = function(user) {
 			return $http.patch('/api/user/' + user.uuid, user)
 			.then(function(result) {
-				user = result.data;
-				return user;
+				_user = result.data;
+				return _user;
 			});
 		};
 

@@ -8,6 +8,7 @@
 
 
 	function getAndShowText($scope) {
+
 		$scope.texts = $scope.texts || [];
 
 		var name = userService.get().name;
@@ -15,6 +16,8 @@
 		textService.getText(name)
 		.then(function(res) {
 			
+			console.log(res);
+
 			var text = res.data.index + '. ' + res.data.text.replace('%s', res.data.name);
 	
 			$scope.texts.push({
@@ -29,12 +32,11 @@
 
 					obj.on('onEnd', function() {
 
-						angular.extend($scope.texts[$scope.texts.length-1], {
-							word : ''
-						});
+						angular.extend($scope.texts[$scope.texts.length-1], { word : '' });
 						
 						$scope.$apply();
-						// loop
+
+						// main handler.... recursive
 						getAndShowText($scope);
 
 					});

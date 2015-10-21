@@ -2,7 +2,7 @@
 	
 	'use strict';
 
-	var _ = require('../../../assets/vendor/lodash/lodash.js');
+	var _ = require('vendor/lodash/lodash.js');
 	var Speech = require('./Speech.js');
 
 

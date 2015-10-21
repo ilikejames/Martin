@@ -42,7 +42,7 @@ gulp.task('clean', function() {
 gulp.task('ngtemplates', function () {
 
 	var templateCache = require('gulp-angular-templatecache');
-	//var minifier = require('gulp-minify-html');
+	var minifier = require('gulp-minify-html');
 
 	return gulp.src('public/app/**/*.htm')
 	//.pipe(minifier())
@@ -64,7 +64,12 @@ gulp.task('js', function() {
 			'./public/app/app.module.js',
 			'./public/build/templates.js'
 		],
-		debug: true
+		extensions: ['.js'],
+        paths: [
+        	'./node_modules',
+	        './public/app/'
+	    ],
+	    debug : true
 	});
 
 	return b.bundle()
@@ -90,6 +95,7 @@ gulp.task('jshint', function() {
 
 	return gulp.src([
 		'./public/app/**/*.js',
+		'!./public/app/vendor/**/*.js',
 		'./public/build/templates.js'
 	])
 	.pipe(jshint())

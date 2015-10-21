@@ -3,7 +3,6 @@
 	'use strict';
 
 
-
 	module.exports = function HighlightPhrases($interval, $sce, $anchorScroll, $timeout) {
 
 		return {
@@ -16,7 +15,7 @@
 				text : '@',
 				number : '@',
 				word : '@',
-				spoken : '@'
+				spoken : '@',
 			},
 
 
@@ -25,7 +24,7 @@
 				// scroll to position
 				$timeout(angular.bind({}, $anchorScroll, 'speak_' + $scope.number),100);
 
-
+	
 				$scope.getHighlightedText = function() {
 
 					var spoken  = $scope.spoken || '',

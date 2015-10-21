@@ -2,8 +2,8 @@
 	
 	'use strict';
 
+	module.exports = function NameController($scope, SpeechFactory, UserService, $location) {
 
-	module.exports = function NameController($scope, SpeechFactory, UserService) {
 		$scope.user = {
 			name : '',
 			languages : []
@@ -14,12 +14,13 @@
 		});
 
 		$scope.update = function(user) {
-			debugger;
 			UserService.create(user)
-			.then(function(created) {
-				console.log('TODO: change route');
-			});
+			.then(angular.bind(this, $location.path, '/' + user.name));
+			// function(created) {
+				//$location.path('/' + user.name);
+			//});
 		};
+		
 	};
 
 })();
